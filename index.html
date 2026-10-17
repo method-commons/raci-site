@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RACI-Matrix</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%234f46e5'/%3E%3Crect%20x='5.5'%20y='7.6'%20width='8'%20height='4.4'%20rx='2.2'%20fill='%23fff'%20opacity='.85'/%3E%3Crect%20x='15.6'%20y='7.6'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'%20opacity='.5'/%3E%3Crect%20x='19.7'%20y='7.6'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'/%3E%3Crect%20x='23.8'%20y='7.6'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'%20opacity='.2'/%3E%3Crect%20x='5.5'%20y='14'%20width='8'%20height='4.4'%20rx='2.2'%20fill='%23fff'%20opacity='.85'/%3E%3Crect%20x='15.6'%20y='14'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'/%3E%3Crect%20x='19.7'%20y='14'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fb923c'/%3E%3Crect%20x='23.8'%20y='14'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'%20opacity='.5'/%3E%3Crect%20x='5.5'%20y='20.4'%20width='8'%20height='4.4'%20rx='2.2'%20fill='%23fff'%20opacity='.85'/%3E%3Crect%20x='15.6'%20y='20.4'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'%20opacity='.2'/%3E%3Crect%20x='19.7'%20y='20.4'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'%20opacity='.5'/%3E%3Crect%20x='23.8'%20y='20.4'%20width='3.3'%20height='4.4'%20rx='1'%20fill='%23fff'/%3E%3C/svg%3E">
+<meta name="description" content="Eine kompakte Schulung zur RACI-Methode: Zuständigkeiten klären mit R, A, C und I, die Matrix waagerecht und senkrecht prüfen, Varianten RASCI, RACI-VS und DACI, Rollen entlasten, Ist und Soll – mit interaktiver Matrix-Werkstatt und Wissenscheck.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface-2: #efede6;
+    --text: #1d1d1b;
+    --muted: #5d5c57;
+    --line: #dcd9cf;
+    --accent: #2f5bd3;
+    --logo: #4f46e5;
+    --accent-soft: #e3eafc;
+    --accent-text: #ffffff;
+    --ok: #1f7a4d;
+    --ok-soft: #dff2e8;
+    --warn: #a4501a;
+    --warn-soft: #fbe9dc;
+    --bad: #b42323;
+    --bad-soft: #fde4e4;
+    --hl: #fff3c4;
+    /* Farben der Buchstaben wie in der App: --lc-* Fläche, --lt-* Schrift */
+    --lc-indigo: #4f46e5; --lc-teal: #0e7490; --lc-cyan: #c5edf3; --lc-orange: #ffd8a8; --lc-violet: #e5d7fd; --lc-pink: #fcd6e5; --lc-gray: #e4e7ec;
+    --lt-cyan: #0e7490; --lt-orange: #a35200; --lt-violet: #7c3aed; --lt-pink: #c2255c; --lt-gray: #667085;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 24px rgba(0,0,0,.06);
+    --radius: 14px;
+    --maxw: 1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141413;
+      --surface: #1d1d1b;
+      --surface-2: #262623;
+      --text: #ecebe6;
+      --muted: #a3a29b;
+      --line: #36352f;
+      --accent: #7c9cf5;
+      --logo: #8b8cf8;
+      --accent-soft: #23305a;
+      --accent-text: #0f1424;
+      --ok: #6fd1a0;
+      --ok-soft: #173a29;
+      --warn: #f2a46f;
+      --warn-soft: #3d2516;
+      --bad: #ff8f8f;
+      --bad-soft: #3d1a1c;
+      --hl: #3a3416;
+      --lc-indigo: #6366f1; --lc-teal: #0e8aa8; --lc-cyan: #1a444c; --lc-orange: #5a3a14; --lc-violet: #3a2b63; --lc-pink: #5a1f36; --lc-gray: #2b313c;
+      --lt-cyan: #66d9e8; --lt-orange: #ffc078; --lt-violet: #c4b5fd; --lt-pink: #faa2c1; --lt-gray: #adb5bd;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141413;
+    --surface: #1d1d1b;
+    --surface-2: #262623;
+    --text: #ecebe6;
+    --muted: #a3a29b;
+    --line: #36352f;
+    --accent: #7c9cf5;
+    --logo: #8b8cf8;
+    --accent-soft: #23305a;
+    --accent-text: #0f1424;
+    --ok: #6fd1a0;
+    --ok-soft: #173a29;
+    --warn: #f2a46f;
+    --warn-soft: #3d2516;
+    --bad: #ff8f8f;
+    --bad-soft: #3d1a1c;
+    --hl: #3a3416;
+    --lc-indigo: #6366f1; --lc-teal: #0e8aa8; --lc-cyan: #1a444c; --lc-orange: #5a3a14; --lc-violet: #3a2b63; --lc-pink: #5a1f36; --lc-gray: #2b313c;
+    --lt-cyan: #66d9e8; --lt-orange: #ffc078; --lt-violet: #c4b5fd; --lt-pink: #faa2c1; --lt-gray: #adb5bd;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.2; margin: 0 0 .5em; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -.01em; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  h3 { font-size: 1.15rem; font-family: Inter, sans-serif; font-weight: 600; }
+  p { margin: 0 0 1em; }
+  a { color: var(--accent); }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; font-weight: 600; color: var(--accent); margin-bottom: .75em; display: block; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 62ch; }
+  .muted { color: var(--muted); }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
+  .brand { font-weight: 700; text-decoration: none; color: var(--text); display: flex; gap: 10px; align-items: center; white-space: nowrap; }
+  .logo {
+    width: 28px; height: 28px; flex-shrink: 0; color: var(--logo);
+    filter: drop-shadow(0 2px 4px color-mix(in srgb, var(--logo) 35%, transparent));
+  }
+  nav.top ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 18px; font-size: .9rem; }
+  nav.top ul a { color: var(--muted); text-decoration: none; }
+  nav.top ul a:hover { color: var(--text); }
+  .menu-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 999px; height: 34px; padding: 0 14px; font: 600 .85rem Inter, sans-serif; cursor: pointer; align-items: center; gap: 6px; }
+  @media (max-width: 1000px) {
+    nav.top .wrap { gap: 10px; }
+    .menu-toggle { display: inline-flex; }
+    nav.top ul {
+      display: none; position: absolute; left: 0; right: 0; top: 60px;
+      flex-direction: column; gap: 0; margin: 0; padding: 8px 16px 16px;
+      background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow);
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    nav.top.open ul { display: flex; }
+    nav.top ul a { display: block; padding: 12px 4px; font-size: 1rem; border-bottom: 1px solid var(--line); }
+    nav.top ul li:last-child a { border-bottom: 0; }
+  }
+  @media (max-width: 400px) { .brand-text { font-size: .9rem; } }
+  @media (max-width: 370px) { .menu-label { display: none; } .menu-toggle { padding: 0 11px; } .brand { gap: 8px; } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: .95rem;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-text); }
+  .btn-ghost { border-color: var(--line); color: var(--text); background: var(--surface); }
+  .btn-sm { padding: 8px 14px; font-size: .85rem; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn:disabled { opacity: .45; cursor: default; filter: none; }
+
+  /* Hero */
+  .hero { padding: 88px 0 72px; border-top: 0; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .hero-meta { display: flex; gap: 24px; margin-top: 32px; font-size: .9rem; color: var(--muted); flex-wrap: wrap; }
+  .hero-meta b { color: var(--text); display: block; font-size: 1.2rem; }
+
+  .hero-box {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px; box-shadow: var(--shadow); overflow: hidden;
+  }
+  .hero-box svg { width: 100%; height: auto; display: block; }
+
+  /* Cards */
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 960px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 860px) { .grid-3, .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 601px) and (max-width: 860px) { .grid-3 > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
+  @media (max-width: 600px) { .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .hero-box { max-width: 520px; width: 100%; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .card p:last-child { margin-bottom: 0; }
+  .icon { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 14px; font-weight: 700; }
+
+  .two-col > *, .grid-2 > *, .grid-3 > *, .grid-4 > *, .demo-out > *, .hero-grid > * { min-width: 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; gap: 24px; } }
+
+  blockquote {
+    margin: 0; padding: 20px 24px; border-left: 3px solid var(--accent);
+    background: var(--surface); border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: Fraunces, Georgia, serif; font-size: 1.15rem;
+  }
+  blockquote footer { font-family: Inter, sans-serif; font-size: .85rem; color: var(--muted); margin-top: 10px; }
+
+  /* Glossary */
+  dl.terms { margin: 0; display: grid; gap: 14px; }
+  dl.terms div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; }
+  dl.terms dt { font-weight: 600; }
+  dl.terms dd { margin: 4px 0 0; color: var(--muted); font-size: .95rem; }
+
+  /* Buchstaben – wie .b in der App */
+  .b {
+    font-style: normal; display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 5px;
+    border-radius: 7px; font: 800 12px/1 Inter, sans-serif; border: 1px solid transparent; white-space: nowrap;
+    background: var(--lc, var(--surface-2)); color: var(--lt, var(--text)); vertical-align: middle;
+  }
+  .lc-indigo, .lc-teal { --lt: #fff; }
+  .lc-indigo { --lc: var(--lc-indigo); } .lc-teal { --lc: var(--lc-teal); }
+  .lc-cyan { --lc: var(--lc-cyan); --lt: var(--lt-cyan); }
+  .lc-orange { --lc: var(--lc-orange); --lt: var(--lt-orange); }
+  .lc-violet { --lc: var(--lc-violet); --lt: var(--lt-violet); }
+  .lc-pink { --lc: var(--lc-pink); --lt: var(--lt-pink); }
+  .lc-gray { --lc: var(--lc-gray); --lt: var(--lt-gray); }
+  .b.multi { color: #fff; min-width: 34px; font-size: 11px; }
+  .b.unknown { background: transparent; border: 1.5px dashed var(--line); color: var(--muted); }
+  .b.old { opacity: .45; text-decoration: line-through; }
+  .b.sm { min-width: 20px; height: 20px; font-size: 10.5px; border-radius: 5px; padding: 0 4px; }
+  .b.multi.sm { min-width: 28px; font-size: 9.5px; }
+  .b.lg { min-width: 44px; height: 44px; font-size: 18px; border-radius: 11px; }
+
+  .letter { border-top: 4px solid var(--lc); }
+  .letter .head { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+  .letter .head h3 { margin: 0; }
+  .letter .head small { display: block; color: var(--muted); font-size: .85rem; }
+  .letter .qq { font-family: Fraunces, Georgia, serif; font-size: 1.05rem; margin: 0 0 8px; }
+  .letter .rule { margin-top: 12px; font-size: .82rem; background: var(--surface-2); border-radius: 8px; padding: 6px 10px; }
+  .letter .rule b { font-weight: 600; }
+
+  .vs { display: grid; gap: 8px; margin-top: 12px; }
+  .vs div { display: grid; grid-template-columns: 26px 1fr; gap: 6px; font-size: .92rem; padding: 8px 12px; border-radius: 9px; }
+  .vs .no { background: var(--warn-soft); color: var(--warn); }
+  .vs .yes { background: var(--ok-soft); color: var(--ok); }
+  .vs small { display: block; opacity: .85; font-size: .82rem; }
+
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; margin-top: 12px; }
+  .flow div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .9rem; }
+  .flow span { color: var(--muted); font-weight: 700; text-align: center; }
+  .flow b { display: block; font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+  /* Steps */
+  ol.steps { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 16px; counter-reset: step; }
+  ol.steps li {
+    counter-increment: step; display: grid; grid-template-columns: 56px 1fr; gap: 20px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px;
+  }
+  ol.steps li::before {
+    content: counter(step); font-family: Fraunces, Georgia, serif; font-size: 1.6rem; font-weight: 700;
+    width: 48px; height: 48px; border-radius: 12px; background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center;
+  }
+  ol.steps h3 { margin-bottom: .3em; }
+  ol.steps p { margin: 0; color: var(--muted); }
+  ol.steps .tip { margin-top: 10px; font-size: .9rem; color: var(--text); }
+  ol.steps .tip b { color: var(--accent); }
+  @media (max-width: 560px) { ol.steps li { grid-template-columns: 1fr; gap: 10px; } }
+
+  /* Prüfen */
+  .axis h3 { display: flex; align-items: center; gap: 10px; }
+  .axis .arrow { font: 700 1.1rem Inter, sans-serif; width: 34px; height: 34px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
+  ul.hints { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .9rem; }
+  ul.hints li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start; border-radius: 8px; }
+  ul.hints .sym { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; font-size: .75rem; font-weight: 700; background: var(--surface-2); color: var(--muted); }
+  ul.hints .ok .sym { background: var(--ok-soft); color: var(--ok); }
+  ul.hints .warn .sym { background: var(--warn-soft); color: var(--warn); }
+  ul.hints .bad .sym { background: var(--bad-soft); color: var(--bad); }
+  ul.hints b { font-weight: 600; }
+  ul.hints small { display: block; color: var(--muted); font-size: .85rem; }
+  ul.hints li.click { cursor: pointer; padding: 2px; margin: -2px; }
+  ul.hints li.click:hover b { text-decoration: underline; }
+  ul.hints li.on { background: var(--hl); }
+  .sev { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  .sev div { flex: 1 1 220px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; font-size: .9rem; }
+  .sev .pill { margin-bottom: 6px; }
+  .pill { display: inline-block; font: 600 .72rem Inter, sans-serif; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .pill.ok { background: var(--ok-soft); color: var(--ok); }
+  .pill.warn { background: var(--warn-soft); color: var(--warn); }
+  .pill.bad { background: var(--bad-soft); color: var(--bad); }
+  .pill.info { background: var(--surface-2); color: var(--muted); }
+
+  /* Werkstatt */
+  .demo-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+  .demo-tools { display: flex; gap: 10px; flex-wrap: wrap; }
+  .demo-out { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .side { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: start; }
+  .side > * { min-width: 0; }
+  @media (max-width: 860px) { .side { grid-template-columns: 1fr; } }
+  .bar { display: flex; gap: 10px 14px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .bar label { font-size: .85rem; font-weight: 600; }
+  .bar select { padding: 7px 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit; font-size: .9rem; }
+  .bar .spacer { flex: 1; }
+  .legend { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: .82rem; color: var(--muted); }
+  .legend span { display: inline-flex; gap: 6px; align-items: center; }
+  .picker { display: flex; gap: 8px 12px; align-items: center; flex-wrap: wrap; background: var(--surface-2); border-radius: 12px; padding: 10px 12px; margin-bottom: 12px; min-height: 58px; font-size: .9rem; }
+  .picker .where { flex: 1 1 200px; min-width: 0; }
+  .picker .where b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .picker .where small { color: var(--muted); }
+  .picker .keys { display: flex; gap: 6px; flex-wrap: wrap; }
+  .picker button.pk { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 3px; cursor: pointer; line-height: 0; }
+  .picker button.pk[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .picker button.clr { background: none; border: 1px solid var(--line); color: var(--text); border-radius: 999px; padding: 6px 12px; font: 600 .8rem Inter, sans-serif; cursor: pointer; }
+  .picker .conflict { flex-basis: 100%; color: var(--bad); font-size: .85rem; }
+  .mx-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  table.mx { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 760px; font-size: .88rem; }
+  table.mx th, table.mx td { border-bottom: 1px solid var(--line); padding: 5px 4px; text-align: center; vertical-align: middle; }
+  table.mx tbody tr:last-child td { border-bottom-width: 2px; }
+  table.mx tfoot td { border-bottom: 0; padding-top: 8px; padding-bottom: 10px; vertical-align: top; }
+  table.mx .task { text-align: left; position: sticky; left: 0; z-index: 1; background: var(--surface); min-width: 230px; padding-left: 10px; border-right: 1px solid var(--line); }
+  table.mx .task .t { display: grid; grid-template-columns: 20px 1fr; gap: 6px; align-items: center; }
+  table.mx .no { color: var(--muted); font-size: .78rem; font-weight: 600; text-align: right; }
+  table.mx input {
+    width: 100%; min-width: 0; padding: 6px 7px; border-radius: 7px; border: 1px solid transparent;
+    background: transparent; color: var(--text); font: inherit; font-size: .88rem;
+  }
+  table.mx input:hover { border-color: var(--line); }
+  table.mx thead input { font-weight: 600; text-align: center; font-size: .8rem; }
+  table.mx th.role { min-width: 100px; }
+  table.mx th.chk, table.mx td.chk { min-width: 86px; border-left: 1px solid var(--line); }
+  table.mx th .lbl { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  button.cell { width: 100%; min-width: 48px; height: 38px; border: 1px dashed transparent; background: transparent; border-radius: 8px; cursor: pointer; display: grid; place-items: center; }
+  button.cell:hover { border-color: var(--line); }
+  button.cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button.cell.sel { border: 2px solid var(--accent); background: var(--accent-soft); }
+  tr.hl td, td.hl, th.hl { background: var(--hl); }
+  tr.hl td.task { background: var(--hl); }
+  .st { display: inline-block; font: 600 .74rem Inter, sans-serif; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .st.ok { background: var(--ok-soft); color: var(--ok); }
+  .st.bad { background: var(--bad-soft); color: var(--bad); }
+  .st.warn { background: var(--warn-soft); color: var(--warn); }
+  .st.info, .st.empty { background: var(--surface-2); color: var(--muted); }
+  .sum { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; font-size: .72rem; color: var(--muted); }
+  .sum span { display: inline-flex; align-items: center; gap: 2px; }
+  .sum + .st { margin-top: 6px; }
+  .tfoot-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  .row-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .scroll-hint { display: none; font-size: .8rem; color: var(--muted); margin: 8px 0 0; }
+  @media (max-width: 1000px) { .scroll-hint { display: block; } }
+  @media (max-width: 640px) { table.mx .task { min-width: 160px; } }
+  .side .card { padding: 20px; }
+  .side h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .side h3 small { font: 500 .8rem Inter, sans-serif; color: var(--muted); }
+  .status { padding: 10px 14px; border-radius: 10px; font-size: .9rem; margin-top: 14px; }
+  .status.ok { background: var(--ok-soft); color: var(--ok); }
+  .status.warn { background: var(--warn-soft); color: var(--warn); }
+  .status.bad { background: var(--bad-soft); color: var(--bad); }
+  .status.info { background: var(--surface-2); color: var(--muted); }
+  ul.sugg { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .88rem; }
+  ul.sugg li { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; background: var(--surface-2); border-radius: 9px; padding: 8px 10px; }
+  ul.sugg small { display: block; color: var(--muted); font-size: .8rem; }
+  ul.sugg button { background: var(--surface); border: 1px solid var(--line); color: var(--accent); border-radius: 999px; padding: 5px 10px; font: 600 .78rem Inter, sans-serif; cursor: pointer; }
+
+  /* Varianten */
+  .var .letters { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 12px; }
+  .var ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: .9rem; }
+  .var li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: start; }
+  .var li span { color: var(--muted); }
+  .var .ex { margin-top: 12px; font-size: .85rem; background: var(--surface-2); border-radius: 8px; padding: 8px 12px; }
+  .var .ex b { display: block; font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+  /* Rollen */
+  .col-read { display: grid; gap: 10px; margin-top: 16px; }
+  .col-read div { display: grid; grid-template-columns: 74px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: .92rem; }
+  .col-read .keys { display: flex; gap: 3px; flex-wrap: wrap; }
+  .relieve { display: grid; gap: 8px; margin-top: 12px; }
+  .relieve div { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: .92rem; }
+  .relieve .chg { display: inline-flex; gap: 4px; align-items: center; color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .relieve small { display: block; color: var(--muted); font-size: .82rem; }
+  .profile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+  .profile header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 12px; }
+  .profile header b { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; }
+  .profile header span { color: var(--muted); font-size: .85rem; }
+  .profile dl { margin: 0; display: grid; gap: 10px; }
+  .profile dt { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; display: flex; gap: 6px; align-items: center; }
+  .profile dd { margin: 2px 0 0; font-size: .92rem; }
+  .profile dd small { color: var(--muted); }
+
+  /* Ist / Soll */
+  .diff { width: 100%; border-collapse: collapse; font-size: .9rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .diff th, .diff td { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+  .diff th { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; background: var(--surface-2); }
+  .diff tr:last-child td { border-bottom: 0; }
+  .diff td.ch { white-space: nowrap; }
+  .diff .to { color: var(--muted); font-weight: 700; margin: 0 4px; }
+  .diff .gone { font-size: .78rem; color: var(--muted); font-style: italic; }
+  .diff-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; }
+  .bars { display: grid; gap: 10px; margin-top: 14px; }
+  .bars .r { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; font-size: .88rem; }
+  .bars .track { display: grid; gap: 3px; }
+  .bars .bb { height: 12px; border-radius: 4px; background: var(--lc-indigo); width: calc(var(--n) * 8%); min-width: 4px; }
+  .bars .bb.ist { opacity: .35; }
+  .bars small { color: var(--muted); font-size: .78rem; }
+
+  /* Do / Don't */
+  .dd h3 { display: flex; align-items: center; gap: 8px; }
+  .dd ul { margin: 0; padding-left: 1.2em; }
+  .dd li { margin-bottom: .5em; }
+  .dd.do h3 { color: var(--ok); }
+  .dd.dont h3 { color: var(--warn); }
+
+  /* Quiz */
+  .quiz { display: grid; gap: 16px; }
+  .quiz .qz { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+  .quiz .qz p { font-weight: 600; }
+  .quiz .opts { display: grid; gap: 8px; }
+  .quiz button {
+    text-align: left; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--text); font: inherit; cursor: pointer;
+  }
+  .quiz button:hover:not(:disabled) { border-color: var(--accent); }
+  .quiz button.right { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+  .quiz button.wrong { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+  .quiz .why { margin-top: 12px; font-size: .9rem; color: var(--muted); display: none; }
+  .quiz .qz.done .why { display: block; }
+
+  /* CTA */
+  .cta { background: var(--accent); color: var(--accent-text); border-radius: 20px; padding: 48px 40px; display: grid; grid-template-columns: 1.4fr auto; gap: 24px; align-items: center; }
+  .cta p { opacity: .9; margin: 0; }
+  .cta .btn { background: var(--accent-text); color: var(--accent); }
+  @media (max-width: 760px) { .cta { grid-template-columns: 1fr; padding: 32px 24px; } }
+
+  footer.site { padding: 40px 0 56px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+  footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 640px) {
+    section { padding: 48px 0; }
+    .hero { padding: 40px 0 48px; }
+    .hero-grid { gap: 32px; }
+    .lead { font-size: 1.05rem; }
+    .hero .actions .btn, .demo-tools .btn { flex: 1 1 auto; justify-content: center; }
+    .demo-tools { width: 100%; }
+    .card { padding: 20px; }
+    ol.steps li { padding: 18px 20px; }
+    ol.steps li::before { width: 40px; height: 40px; font-size: 1.3rem; }
+    .cta .btn { justify-content: center; }
+    .flow { grid-template-columns: 1fr; }
+    .flow span { transform: rotate(90deg); }
+    .bars .r { grid-template-columns: 96px 1fr; }
+  }
+  .theme-toggle { margin-left: 8px; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 999px; width: 34px; height: 34px; cursor: pointer; display: grid; place-items: center; flex-shrink: 0; }
+  @media (max-width: 1000px) { .theme-toggle { margin-left: auto; } }
+  @media (hover: none) { .quiz button:hover:not(:disabled) { border-color: var(--line); } }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Hauptnavigation">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="currentColor"/>
+        <rect x="5.5" y="7.6" width="8" height="4.4" rx="2.2" fill="#fff" opacity=".85"/>
+        <rect x="15.6" y="7.6" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".5"/>
+        <rect x="19.7" y="7.6" width="3.3" height="4.4" rx="1" fill="#fff"/>
+        <rect x="23.8" y="7.6" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="5.5" y="14" width="8" height="4.4" rx="2.2" fill="#fff" opacity=".85"/>
+        <rect x="15.6" y="14" width="3.3" height="4.4" rx="1" fill="#fff"/>
+        <rect x="19.7" y="14" width="3.3" height="4.4" rx="1" fill="#fb923c"/>
+        <rect x="23.8" y="14" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".5"/>
+        <rect x="5.5" y="20.4" width="8" height="4.4" rx="2.2" fill="#fff" opacity=".85"/>
+        <rect x="15.6" y="20.4" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="19.7" y="20.4" width="3.3" height="4.4" rx="1" fill="#fff" opacity=".5"/>
+        <rect x="23.8" y="20.4" width="3.3" height="4.4" rx="1" fill="#fff"/>
+      </svg>
+      <span class="brand-text">RACI-Matrix</span>
+    </a>
+    <ul id="navMenu">
+      <li><a href="#grundidee">Grundidee</a></li>
+      <li><a href="#buchstaben">Buchstaben</a></li>
+      <li><a href="#vorgehen">Vorgehen</a></li>
+      <li><a href="#pruefen">Prüfen</a></li>
+      <li><a href="#werkstatt">Werkstatt</a></li>
+      <li><a href="#varianten">Varianten</a></li>
+      <li><a href="#rollen">Rollen</a></li>
+      <li><a href="#ist-soll">Ist / Soll</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel umschalten"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Menü öffnen"><span aria-hidden="true">☰</span> <span class="menu-label">Menü</span></button>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Kurzschulung · Zuständigkeiten klären</span>
+        <h1>Klar, wer entscheidet – und wer was macht</h1>
+        <p class="lead">Mit einer RACI-Matrix legst du für jede Aufgabe fest, wer sie ausführt, wer entscheidet, wer gefragt und wer informiert wird. In 20 Minuten lernst du die vier Buchstaben, das Vorgehen Zeile für Zeile und wie du die fertige Matrix waagerecht und senkrecht prüfst.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#grundidee">Schulung starten ↓</a>
+          <a class="btn btn-ghost" href="https://method-commons.github.io/raci-app/" target="_blank" rel="noopener">Zur RACI-App ↗</a>
+        </div>
+        <div class="hero-meta">
+          <div><b>4</b>Buchstaben</div>
+          <div><b>~20 min</b>Lesezeit</div>
+          <div><b>1</b>Matrix-Werkstatt</div>
+        </div>
+      </div>
+      <div class="hero-box" aria-hidden="true">
+        <svg viewBox="0 0 420 300">
+          <style>
+            .h-hd { font: 600 10px Inter, sans-serif; fill: var(--muted); }
+            .h-t { font: 600 11.5px Inter, sans-serif; fill: var(--text); }
+            .h-row { fill: var(--surface); stroke: var(--line); }
+            .h-row-bad { fill: var(--bad-soft); stroke: var(--line); }
+            .h-line { stroke: var(--line); stroke-width: 1; }
+            .h-a { fill: var(--lc-indigo); } .h-r { fill: var(--lc-teal); } .h-c { fill: var(--lc-orange); } .h-i { fill: var(--lc-gray); }
+            .h-lw { font: 800 11px Inter, sans-serif; fill: #fff; }
+            .h-lc { font: 800 11px Inter, sans-serif; fill: var(--lt-orange); }
+            .h-li { font: 800 11px Inter, sans-serif; fill: var(--lt-gray); }
+            .h-ok { fill: var(--ok-soft); } .h-okt { font: 700 10px Inter, sans-serif; fill: var(--ok); }
+            .h-bad { fill: var(--bad-soft); stroke: var(--bad); stroke-width: .8; } .h-badt { font: 700 10px Inter, sans-serif; fill: var(--bad); }
+            .h-wa { fill: var(--warn-soft); } .h-wat { font: 700 10px Inter, sans-serif; fill: var(--warn); }
+            .h-sm { font: 500 10px Inter, sans-serif; fill: var(--muted); }
+          </style>
+          <!-- Kopf -->
+          <text class="h-hd" x="14" y="24">AUFGABE</text>
+          <text class="h-hd" x="198" y="24" text-anchor="middle">Inhab.</text>
+          <text class="h-hd" x="244" y="24" text-anchor="middle">Schicht</text>
+          <text class="h-hd" x="290" y="24" text-anchor="middle">Technik</text>
+          <text class="h-hd" x="336" y="24" text-anchor="middle">Einkauf</text>
+          <text class="h-hd" x="388" y="24" text-anchor="middle">PRÜFUNG</text>
+          <path class="h-line" d="M10 34H410"/>
+
+          <!-- 1 -->
+          <rect class="h-row" x="10" y="42" width="400" height="36" rx="8"/>
+          <text class="h-t" x="20" y="64">Standplatz beantragen</text>
+          <rect class="h-a" x="180" y="48" width="36" height="24" rx="6"/><text class="h-lw" x="198" y="64" text-anchor="middle">A/R</text>
+          <rect class="h-i" x="232" y="48" width="24" height="24" rx="6"/><text class="h-li" x="244" y="64" text-anchor="middle">I</text>
+          <rect class="h-c" x="324" y="48" width="24" height="24" rx="6"/><text class="h-lc" x="336" y="64" text-anchor="middle">C</text>
+          <rect class="h-ok" x="372" y="51" width="32" height="18" rx="9"/><text class="h-okt" x="388" y="64" text-anchor="middle">✓</text>
+
+          <!-- 2 -->
+          <rect class="h-row-bad" x="10" y="86" width="400" height="36" rx="8"/>
+          <text class="h-t" x="20" y="108">Ware bestellen</text>
+          <rect class="h-a" x="186" y="92" width="24" height="24" rx="6"/><text class="h-lw" x="198" y="108" text-anchor="middle">A</text>
+          <rect class="h-c" x="232" y="92" width="24" height="24" rx="6"/><text class="h-lc" x="244" y="108" text-anchor="middle">C</text>
+          <rect class="h-a" x="318" y="92" width="36" height="24" rx="6"/><text class="h-lw" x="336" y="108" text-anchor="middle">A/R</text>
+          <rect class="h-bad" x="368" y="95" width="40" height="18" rx="9"/><text class="h-badt" x="388" y="108" text-anchor="middle">2× A</text>
+
+          <!-- 3 -->
+          <rect class="h-row" x="10" y="130" width="400" height="36" rx="8"/>
+          <text class="h-t" x="20" y="152">Schichtplan erstellen</text>
+          <rect class="h-c" x="186" y="136" width="24" height="24" rx="6"/><text class="h-lc" x="198" y="152" text-anchor="middle">C</text>
+          <rect class="h-a" x="226" y="136" width="36" height="24" rx="6"/><text class="h-lw" x="244" y="152" text-anchor="middle">A/R</text>
+          <rect class="h-ok" x="372" y="139" width="32" height="18" rx="9"/><text class="h-okt" x="388" y="152" text-anchor="middle">✓</text>
+
+          <!-- 4 -->
+          <rect class="h-row" x="10" y="174" width="400" height="36" rx="8"/>
+          <text class="h-t" x="20" y="196">Gasanschluss prüfen</text>
+          <rect class="h-i" x="232" y="180" width="24" height="24" rx="6"/><text class="h-li" x="244" y="196" text-anchor="middle">I</text>
+          <rect class="h-a" x="272" y="180" width="36" height="24" rx="6"/><text class="h-lw" x="290" y="196" text-anchor="middle">A/R</text>
+          <rect class="h-ok" x="372" y="183" width="32" height="18" rx="9"/><text class="h-okt" x="388" y="196" text-anchor="middle">✓</text>
+
+          <!-- 5 -->
+          <rect class="h-row" x="10" y="218" width="400" height="36" rx="8"/>
+          <text class="h-t" x="20" y="240">Kasse abrechnen</text>
+          <rect class="h-a" x="232" y="224" width="24" height="24" rx="6"/><text class="h-lw" x="244" y="240" text-anchor="middle">A</text>
+          <rect class="h-c" x="278" y="224" width="24" height="24" rx="6"/><text class="h-lc" x="290" y="240" text-anchor="middle">C</text>
+          <rect class="h-i" x="324" y="224" width="24" height="24" rx="6"/><text class="h-li" x="336" y="240" text-anchor="middle">I</text>
+          <rect class="h-wa" x="366" y="227" width="44" height="18" rx="9"/><text class="h-wat" x="388" y="240" text-anchor="middle">kein R</text>
+
+          <text class="h-sm" x="210" y="286" text-anchor="middle">Aufgaben × Rollen · je Zelle ein Buchstabe · Prüfung je Zeile</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- GRUNDIDEE -->
+  <section id="grundidee">
+    <div class="wrap">
+      <span class="eyebrow">01 · Grundidee</span>
+      <div class="two-col">
+        <div>
+          <h2>Eine Tabelle gegen „Ich dachte, du machst das“</h2>
+          <p>Eine <strong>RACI-Matrix</strong> – auch Verantwortungs- oder Zuständigkeitsmatrix – klärt, wer an welcher Aufgabe wie beteiligt ist. <strong>Aufgaben</strong> stehen in den Zeilen, <strong>Rollen</strong> in den Spalten, und jede Zelle sagt mit einem Buchstaben, was die Rolle bei dieser Aufgabe tut: ausführen, entscheiden, gefragt oder informiert werden.</p>
+          <p>Sie hilft überall dort, wo mehrere Rollen zusammenarbeiten und unklar ist, wer am Ende entscheidet und wer nur Bescheid wissen muss – bei Projekten, Veranstaltungen, wiederkehrenden Abläufen oder nach einer Umorganisation. Der eigentliche Nutzen entsteht beim <strong>gemeinsamen Ausfüllen</strong>: Jede Zeile zwingt zu einer Absprache, die sonst erst im Streitfall fällt.</p>
+          <blockquote>
+            „Wenn alle zuständig sind, ist es niemand.“
+            <footer>— Faustregel aus dem Projektmanagement</footer>
+          </blockquote>
+        </div>
+        <div>
+          <h3 style="margin-bottom:14px">Die wichtigsten Begriffe</h3>
+          <dl class="terms">
+            <div><dt>Aufgabe</dt><dd>Eine Zeile der Matrix – als Tätigkeit formuliert: „Standplatz beantragen“, nicht „Standplatz“. Bei längeren Abläufen in Phasen gegliedert.</dd></div>
+            <div><dt>Rolle</dt><dd>Eine Spalte – eine Funktion wie „Schichtleitung“ oder „Technik“, keine Person. Eine Person kann mehrere Rollen haben.</dd></div>
+            <div><dt>Zelle</dt><dd>Wie die Rolle an der Aufgabe beteiligt ist: R, A, C, I – oder leer, wenn sie nichts damit zu tun hat.</dd></div>
+            <div><dt>A/R</dt><dd>Die entscheidende Rolle erledigt die Aufgabe selbst. Erlaubt und häufig – sie zählt dann als A und als R.</dd></div>
+            <div><dt>Waagerecht / senkrecht lesen</dt><dd>Je Aufgabe prüfen, ob die Zuständigkeit eindeutig ist – und je Rolle, ob sich Arbeit oder Entscheidungen ballen.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUCHSTABEN -->
+  <section id="buchstaben">
+    <div class="wrap">
+      <span class="eyebrow">02 · Die vier Buchstaben</span>
+      <h2>R, A, C, I – vier Fragen je Aufgabe</h2>
+      <p class="lead">Jeder Buchstabe beantwortet eine Frage. Die Regeln je Aufgabe sind einfach: genau ein A, mindestens ein R – C und I so viele wie nötig, aber so wenige wie möglich.</p>
+
+      <div class="grid-4" style="margin-top:28px">
+        <div class="card letter" style="--lc:var(--lc-teal)">
+          <div class="head"><i class="b lg lc-teal">R</i><div><h3>Responsible</h3><small>führt aus</small></div></div>
+          <p class="qq">Wer macht es?</p>
+          <p class="muted" style="font-size:.92rem">Führt die Aufgabe aus und liefert das Ergebnis. Gern mehrere Rollen.</p>
+          <div class="rule"><b>Regel:</b> mindestens ein R je Aufgabe</div>
+        </div>
+        <div class="card letter" style="--lc:var(--lc-indigo)">
+          <div class="head"><i class="b lg lc-indigo">A</i><div><h3>Accountable</h3><small>entscheidet</small></div></div>
+          <p class="qq">Wer hält den Kopf hin?</p>
+          <p class="muted" style="font-size:.92rem">Entscheidet, gibt frei und steht für das Ergebnis ein. Darf zugleich R sein.</p>
+          <div class="rule"><b>Regel:</b> genau ein A je Aufgabe</div>
+        </div>
+        <div class="card letter" style="--lc:var(--lc-orange)">
+          <div class="head"><i class="b lg lc-orange">C</i><div><h3>Consulted</h3><small>wird gefragt</small></div></div>
+          <p class="qq">Wen müssen wir fragen?</p>
+          <p class="muted" style="font-size:.92rem">Wird <em>vorher</em> gefragt – Austausch in beide Richtungen. Jedes C kostet Zeit.</p>
+          <div class="rule"><b>Regel:</b> sparsam – die App merkt ab 5 C an</div>
+        </div>
+        <div class="card letter" style="--lc:var(--lc-gray)">
+          <div class="head"><i class="b lg lc-gray">I</i><div><h3>Informed</h3><small>wird informiert</small></div></div>
+          <p class="qq">Wer muss es wissen?</p>
+          <p class="muted" style="font-size:.92rem">Wird über Ergebnis oder Fortschritt informiert – Einbahnstraße, keine Abstimmung.</p>
+          <div class="rule"><b>Regel:</b> beliebig viele</div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:44px">
+        <div>
+          <h3>C oder I? Die Richtung entscheidet</h3>
+          <p class="muted">Der häufigste Streit beim Ausfüllen. <strong>C</strong> heißt: Die Meinung der Rolle fließt ein, <em>bevor</em> entschieden wird – sie kann das Ergebnis ändern. <strong>I</strong> heißt: Die Rolle erfährt das Ergebnis <em>danach</em>, damit sie ihre Arbeit darauf einstellen kann.</p>
+          <div class="flow">
+            <div><b>C · vorher</b>Einkauf wird zur Speisekarte gefragt: Sind die Zutaten lieferbar?</div>
+            <span>→</span>
+            <div><b>I · danach</b>Das Service-Team erfährt die neuen Preise vor Schichtbeginn.</div>
+          </div>
+        </div>
+        <div>
+          <h3>Das A ist der Kern</h3>
+          <p class="muted">Zwei A in einer Zeile bedeuten: Im Zweifel entscheidet niemand – oder beide gegeneinander. Kein A bedeutet: Die Aufgabe wird erledigt, aber niemand gibt sie frei. Kläre deshalb je Zeile <strong>zuerst das A</strong>.</p>
+          <div class="vs">
+            <div class="no"><span>✕</span><span>Ware bestellen: Inhaberin <b>A</b>, Einkauf <b>A/R</b><small>Zwei A – wer entscheidet am Ende über die Bestellung?</small></span></div>
+            <div class="yes"><span>✓</span><span>Ware bestellen: Inhaberin <b>C</b>, Einkauf <b>A/R</b><small>Einkauf entscheidet und bestellt, die Inhaberin wird vorher gefragt.</small></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VORGEHEN -->
+  <section id="vorgehen">
+    <div class="wrap">
+      <span class="eyebrow">03 · Vorgehen</span>
+      <h2>In sechs Schritten zur geklärten Matrix</h2>
+      <p class="lead">Am besten gemeinsam mit den Beteiligten, Zeile für Zeile. Die App führt durch genau diese Schritte und prüft bei jeder Änderung mit.</p>
+      <ol class="steps">
+        <li><div><h3>Aufgaben sammeln</h3><p>Alle Aufgaben des Ablaufs auflisten und als Tätigkeit formulieren: Verb am Ende („Standplatz beantragen“). Bei längeren Abläufen in Phasen gliedern – Vorbereitung, Aufbau, Betrieb, Abbau.</p><p class="tip"><b>In der App:</b> Vorlage „Veranstaltung“ oder „Projekt“, oder eine Aufgabenliste einfügen – Phasen mit „#“.</p></div></li>
+        <li><div><h3>Rollen anlegen</h3><p>Rollen als Spalten – Funktionen, nicht Personen. So überlebt die Matrix Urlaub, Vertretung und Personalwechsel. Externe Rollen wie Veranstalter oder Ordnungsamt gehören dazu, wenn sie mitentscheiden.</p><p class="tip"><b>In der App:</b> Personen und Vertretung je Rolle, „extern“ kennzeichnen – optional unter Einstellungen.</p></div></li>
+        <li><div><h3>Je Aufgabe zuerst das A klären</h3><p>Wer entscheidet am Ende, wer gibt frei? Genau eine Rolle. Erst dann: Wer führt aus (R)? Wen müssen wir vorher fragen (C)? Wer muss es danach wissen (I)?</p><p class="tip"><b>In der App:</b> Zelle anklicken oder Buchstabe tippen; A und dann R ergibt „A/R“.</p></div></li>
+        <li><div><h3>Waagerecht prüfen</h3><p>Je Zeile: genau ein A, mindestens ein R, nicht zu viele C. Jede Zeile, die das erfüllt, ist <em>eindeutig</em>.</p><p class="tip"><b>In der App:</b> Spalte „Prüfung“ und die Seitenleiste – ein Klick markiert die betroffenen Aufgaben.</p></div></li>
+        <li><div><h3>Senkrecht prüfen</h3><p>Je Spalte: Hat eine Rolle fast überall ein A oder R? Das ist ein Engpass. Gibt es Rollen ganz ohne Aufgabe? Dann ist die Rolle überflüssig oder es fehlen Aufgaben.</p><p class="tip"><b>In der App:</b> Ansicht „Rollen“ mit Verteilung je Rolle und Vorschlägen zum Entlasten.</p></div></li>
+        <li><div><h3>Ergebnis teilen</h3><p>Die Matrix ist erst wirksam, wenn alle sie kennen. Jede Rolle bekommt ihren Teil: Was entscheide ich, was mache ich, wo werde ich gefragt?</p><p class="tip"><b>In der App:</b> „Wer macht was?“ als Steckbrief je Rolle oder Person und ein Bericht zum Drucken oder als Markdown.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PRÜFEN -->
+  <section id="pruefen">
+    <div class="wrap">
+      <span class="eyebrow">04 · Prüfen</span>
+      <h2>Waagerecht und senkrecht lesen</h2>
+      <p class="lead">Eine Matrix ist schnell ausgefüllt – und genauso schnell widersprüchlich. Die Prüfung liest sie in beide Richtungen: je Aufgabe auf Eindeutigkeit, je Rolle auf Belastung.</p>
+
+      <div class="grid-2" style="margin-top:28px">
+        <div class="card axis">
+          <h3><span class="arrow">→</span>Waagerecht – je Aufgabe</h3>
+          <ul class="hints">
+            <li class="bad"><span class="sym">✗</span><span><b>Genau ein A</b><small>Kein A oder zwei A sind ein Fehler: „kein A“, „2× A“.</small></span></li>
+            <li class="warn"><span class="sym">!</span><span><b>Mindestens ein R</b><small>Ohne R entscheidet jemand, aber niemand macht es. A/R zählt als R.</small></span></li>
+            <li class="warn"><span class="sym">!</span><span><b>C sparsam</b><small>Ab 5 C in einer Zeile wird jede Aufgabe zur Abstimmungsrunde.</small></span></li>
+            <li class="warn"><span class="sym">!</span><span><b>Buchstaben passen zur Variante</b><small>Ein S in einer RACI-Matrix ist unbekannt – Tippfehler oder falsche Variante?</small></span></li>
+            <li><span class="sym">–</span><span><b>Aufgabe als Tätigkeit</b><small>„Kasse“ → „Kasse abrechnen“. Ein Hinweis, wenn kein Verb erkannt wird.</small></span></li>
+          </ul>
+        </div>
+        <div class="card axis">
+          <h3><span class="arrow">↓</span>Senkrecht – je Rolle</h3>
+          <ul class="hints">
+            <li class="warn"><span class="sym">!</span><span><b>Keine Engpässe</b><small>Eine Rolle an mehr als 80 % der Aufgaben beteiligt – alles läuft über sie.</small></span></li>
+            <li class="warn"><span class="sym">!</span><span><b>Entscheidungen (A) verteilt</b><small>Mehr als 40 % der A bei einer Rolle (mindestens drei): Entscheidungen bündeln sich.</small></span></li>
+            <li class="warn"><span class="sym">!</span><span><b>Jede Rolle hat eine Aufgabe</b><small>Eine leere Spalte: Rolle überflüssig – oder es fehlen Aufgaben.</small></span></li>
+          </ul>
+          <p class="muted" style="margin:16px 0 0;font-size:.9rem">Senkrecht gelesen heißt außerdem: viele A → Entscheidungen bündeln sich, viele R → Arbeitslast, nur C und I → wird die Rolle hier gebraucht?</p>
+        </div>
+      </div>
+
+      <div class="sev">
+        <div><span class="pill bad">✗ Fehler</span><br>Eine Regel der Buchstaben ist verletzt – die Aufgabe ist nicht eindeutig.</div>
+        <div><span class="pill warn">! Zu prüfen</span><br>Auffällig, aber manchmal gewollt. Hinweis lesen – du entscheidest.</div>
+        <div><span class="pill ok">✓ Eindeutig</span><br>Alle Regeln je Aufgabe erfüllt. Die App zählt „x / n eindeutig“.</div>
+      </div>
+      <p class="muted" style="margin-top:16px;font-size:.9rem">Schwellen und Regeln lassen sich in der App je Matrix unter „Datei → Einstellungen der Matrix“ anpassen – etwa „Viele C ab …“ oder „Engpass ab … %“.</p>
+    </div>
+  </section>
+
+  <!-- WERKSTATT -->
+  <section id="werkstatt">
+    <div class="wrap">
+      <span class="eyebrow">05 · Interaktives Beispiel</span>
+      <div class="demo-head">
+        <div>
+          <h2>Matrix-Werkstatt: Prüf deine eigene Matrix</h2>
+          <p class="lead" style="margin:0">Zelle anklicken und Buchstaben wählen – oder in der gewählten Zelle tippen. Die Prüfung rechnet mit denselben Regeln und Schwellen wie die App.</p>
+        </div>
+        <div class="demo-tools">
+          <button class="btn btn-ghost" id="weakBtn" type="button">✕ Mit Fehlern</button>
+          <button class="btn btn-ghost" id="goodBtn" type="button">✓ Bereinigt</button>
+          <button class="btn btn-ghost" id="clearBtn" type="button">Leeren</button>
+        </div>
+      </div>
+
+      <div class="demo-out">
+        <div>
+          <div class="bar">
+            <label for="variant">Variante</label>
+            <select id="variant">
+              <option value="raci">RACI</option>
+              <option value="rasci">RASCI</option>
+              <option value="raci-vs">RACI-VS</option>
+              <option value="daci">DACI</option>
+            </select>
+            <span class="spacer"></span>
+            <div class="legend" id="legend"></div>
+          </div>
+          <div class="picker" id="picker" aria-live="polite"></div>
+          <div class="mx-wrap">
+            <table class="mx" id="mx" aria-label="RACI-Matrix der Werkstatt"></table>
+          </div>
+          <p class="scroll-hint">← Matrix seitlich wischen →</p>
+          <div class="row-tools">
+            <button class="btn btn-ghost btn-sm" id="addTask" type="button">+ Aufgabe</button>
+            <button class="btn btn-ghost btn-sm" id="removeTask" type="button">Letzte Aufgabe entfernen</button>
+            <button class="btn btn-ghost btn-sm" id="addRole" type="button">+ Rolle</button>
+            <button class="btn btn-ghost btn-sm" id="removeRole" type="button">Letzte Rolle entfernen</button>
+          </div>
+          <p class="muted" style="margin-top:14px;font-size:.88rem">Tasten in einer gewählten Zelle: Buchstabe setzen bzw. entfernen (A, dann R ergibt A/R) · Entf leeren · Pfeiltasten wechseln die Zelle.</p>
+        </div>
+        <div class="side">
+          <div class="card">
+            <h3>Prüfung <small id="clearScore"></small></h3>
+            <ul class="hints" id="hints"></ul>
+            <div class="status info" id="verdict"></div>
+          </div>
+          <div class="card" id="suggCard">
+            <h3>Entlasten</h3>
+            <div id="sugg"></div>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:16px;font-size:.9rem">Vereinfacht: Die Werkstatt zeigt eine Matrix ohne Phasen. In der App kommen Phasen, Personen und Vertretung, „klären“ und Notizen je Zelle, eigene Buchstaben, Ist und Soll sowie Bericht und Export dazu.</p>
+    </div>
+  </section>
+
+  <!-- VARIANTEN -->
+  <section id="varianten">
+    <div class="wrap">
+      <span class="eyebrow">06 · Varianten</span>
+      <h2>RASCI, RACI-VS, DACI – und eigene Buchstaben</h2>
+      <p class="lead">Neben RACI gibt es gängige Buchstabensätze für besondere Fälle. In der App wählst du die Variante beim Anlegen; ein späterer Wechsel behält alle Zellen und merkt unbekannte Buchstaben an.</p>
+
+      <div class="grid-2" style="margin-top:28px">
+        <div class="card var">
+          <h3>RASCI</h3>
+          <div class="letters"><i class="b lc-teal">R</i><i class="b lc-indigo">A</i><i class="b lc-cyan">S</i><i class="b lc-orange">C</i><i class="b lc-gray">I</i></div>
+          <ul>
+            <li><i class="b sm lc-cyan">S</i><span><b style="color:var(--text)">Support</b> – arbeitet dem R zu: Material, Hände, Zeit – ohne selbst verantwortlich zu sein.</span></li>
+          </ul>
+          <div class="ex"><b>Gut für</b>Abläufe mit Zuarbeit, etwa „Reinigungsplan abhaken“: Service-Team R, Technik S.</div>
+        </div>
+        <div class="card var">
+          <h3>RACI-VS</h3>
+          <div class="letters"><i class="b lc-teal">R</i><i class="b lc-indigo">A</i><i class="b lc-orange">C</i><i class="b lc-gray">I</i><i class="b lc-violet">V</i><i class="b lc-pink">S</i></div>
+          <ul>
+            <li><i class="b sm lc-violet">V</i><span><b style="color:var(--text)">Verify</b> – prüft das Ergebnis gegen Vorgaben.</span></li>
+            <li><i class="b sm lc-pink">S</i><span><b style="color:var(--text)">Sign-off</b> – zeichnet ab, höchstens eine Rolle je Aufgabe.</span></li>
+          </ul>
+          <div class="ex"><b>Gut für</b>Genehmigungen, etwa „Lärmschutz nachweisen“: Technik A/R, Ordnungsamt V.</div>
+        </div>
+        <div class="card var">
+          <h3>DACI</h3>
+          <div class="letters"><i class="b lc-teal">D</i><i class="b lc-indigo">A</i><i class="b lc-orange">C</i><i class="b lc-gray">I</i></div>
+          <ul>
+            <li><i class="b sm lc-teal">D</i><span><b style="color:var(--text)">Driver</b> – treibt die Entscheidung voran, genau einer.</span></li>
+            <li><i class="b sm lc-indigo">A</i><span><b style="color:var(--text)">Approver</b> – entscheidet, genau einer.</span></li>
+            <li><i class="b sm lc-orange">C</i><span><b style="color:var(--text)">Contributor</b> – bringt Wissen und Sichtweisen ein.</span></li>
+          </ul>
+          <div class="ex"><b>Gut für</b>eine Entscheidung statt eines Ablaufs, etwa „Kartenzahlung einführen“: Einkauf D, Inhaberin A.</div>
+        </div>
+        <div class="card var">
+          <h3>Eigene Buchstaben</h3>
+          <div class="letters"><i class="b lc-orange">C</i><i class="b lc-indigo">A</i><i class="b lc-gray">I</i><i class="b lc-teal">R</i><i class="b lc-violet">O</i></div>
+          <ul>
+            <li><i class="b sm lc-violet">O</i><span><b style="color:var(--text)">Out of the loop</b> – bewusst nicht beteiligt, wie bei CAIRO.</span></li>
+          </ul>
+          <div class="ex"><b>In der App</b>Kürzel, Name, Bedeutung, Farbe und Regel je Buchstabe frei festlegen: genau einer, mindestens einer, höchstens einer oder beliebig.</div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:16px;font-size:.9rem">Probier es in der <a href="#werkstatt">Werkstatt</a>: Stell die Variante auf DACI – dann fehlt jeder Aufgabe ein D, und jedes R ist ein unbekannter Buchstabe.</p>
+    </div>
+  </section>
+
+  <!-- ROLLEN -->
+  <section id="rollen">
+    <div class="wrap">
+      <span class="eyebrow">07 · Rollen</span>
+      <h2>Senkrecht gelesen: Engpässe erkennen und entlasten</h2>
+      <p class="lead">Die Zeilen sagen, ob jede Aufgabe geklärt ist. Die Spalten sagen, ob die Verteilung trägt – oder ob eine Rolle alles auf dem Tisch hat.</p>
+
+      <div class="two-col" style="margin-top:28px">
+        <div>
+          <h3>Was eine Spalte verrät</h3>
+          <div class="col-read">
+            <div><span class="keys"><i class="b sm lc-indigo">A</i><i class="b sm lc-indigo">A</i><i class="b sm lc-indigo">A</i></span><span><b>Viele A</b> – Entscheidungen bündeln sich. Bei Abwesenheit steht alles still.</span></div>
+            <div><span class="keys"><i class="b sm lc-teal">R</i><i class="b sm lc-teal">R</i><i class="b sm lc-teal">R</i></span><span><b>Viele R</b> – hohe Arbeitslast. Reicht die Zeit für alle Aufgaben?</span></div>
+            <div><span class="keys"><i class="b sm lc-orange">C</i><i class="b sm lc-gray">I</i><i class="b sm lc-gray">I</i></span><span><b>Nur C und I</b> – wird die Rolle hier gebraucht, oder reicht eine Info am Ende?</span></div>
+            <div><span class="keys"><i class="b sm unknown">–</i></span><span><b>Leere Spalte</b> – Rolle überflüssig, oder es fehlen ihre Aufgaben.</span></div>
+          </div>
+          <h3 style="margin-top:32px">Vorschläge zum Entlasten</h3>
+          <p class="muted">Ist eine Rolle ein Engpass, schlägt die App Änderungen vor – als Denkanstöße, übernommen wird erst auf Klick:</p>
+          <div class="relieve">
+            <div><span class="chg"><i class="b sm lc-teal">R</i>→<i class="b sm lc-orange">C</i></span><span>R abgeben – die entscheidende Rolle wird A/R<small>Fritteuse überwachen: Technik A → A/R, Schichtleitung nur noch gefragt.</small></span></div>
+            <div><span class="chg"><i class="b sm lc-orange">C</i>→<i class="b sm lc-gray">I</i></span><span>C durch I ersetzen – das Ergebnis reicht<small>Mit Veranstalter abrechnen: Schichtleitung erfährt das Ergebnis.</small></span></div>
+            <div><span class="chg"><i class="b sm lc-gray">I</i>→ –</span><span>I streichen – nur bei Bedarf informieren<small>Standplatz beantragen: Die Schichtleitung muss es nicht wissen.</small></span></div>
+          </div>
+        </div>
+        <div>
+          <h3>Wer macht was? – der Steckbrief</h3>
+          <p class="muted">Zum Teilen liest die App die Matrix je Rolle oder je Person: als Steckbrief zum Aushängen im Truck oder zum Mitgeben ins Onboarding.</p>
+          <div class="profile">
+            <header><b>Schichtleitung</b><span>Aylin · Vertretung Jonas</span></header>
+            <dl>
+              <div><dt><i class="b sm lc-indigo">A</i> entscheidet</dt><dd>Schichtplan erstellen <small>(auch R)</small> · Kasse betreuen</dd></div>
+              <div><dt><i class="b sm lc-teal">R</i> führt aus</dt><dd>Fritteuse überwachen</dd></div>
+              <div><dt><i class="b sm lc-orange">C</i> wird gefragt</dt><dd>Ware bestellen · Mit Veranstalter abrechnen</dd></div>
+              <div><dt><i class="b sm lc-gray">I</i> wird informiert</dt><dd>Gasanschluss prüfen</dd></div>
+            </dl>
+          </div>
+          <p class="muted" style="margin-top:14px;font-size:.9rem">Personen zu Rollen sind in der App optional. Mit „Je Person“ sieht jemand mit zwei Rollen alles auf einen Blick.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IST / SOLL -->
+  <section id="ist-soll">
+    <div class="wrap">
+      <span class="eyebrow">08 · Umorganisieren</span>
+      <h2>Ist und Soll: Zuständigkeiten gezielt verschieben</h2>
+      <p class="lead">Bei einer Umorganisation hilft der Vergleich. Mit „Ist / Soll“ hat jede Zelle zwei Stände: Im Ist steht, wie es heute läuft, im Soll, wie es künftig laufen soll. Die Ansicht „Ist → Soll“ zeigt jede Änderung.</p>
+
+      <div class="two-col" style="margin-top:28px">
+        <div>
+          <h3>Beispiel „Tagesbetrieb“: Die Inhaberin gibt ab</h3>
+          <div class="diff-wrap">
+            <table class="diff">
+              <thead><tr><th>Aufgabe</th><th>Rolle</th><th>Ist → Soll</th></tr></thead>
+              <tbody>
+                <tr><td>Öffnungs-Checkliste durchgehen</td><td>Inhaberin</td><td class="ch"><i class="b sm lc-indigo">A</i><span class="to">→</span><span class="gone">entfällt</span></td></tr>
+                <tr><td>Öffnungs-Checkliste durchgehen</td><td>Schichtleitung</td><td class="ch"><span class="gone">neu</span><span class="to">→</span><i class="b sm lc-indigo">A</i></td></tr>
+                <tr><td>Fettfilter wöchentlich wechseln</td><td>Technik</td><td class="ch"><i class="b sm lc-teal">R</i><span class="to">→</span><i class="b sm multi" style="background:linear-gradient(135deg,var(--lc-indigo) 0% 50%,var(--lc-teal) 50% 100%)">A/R</i></td></tr>
+                <tr><td>Frischware einkaufen</td><td>Inhaberin</td><td class="ch"><i class="b sm multi" style="background:linear-gradient(135deg,var(--lc-indigo) 0% 50%,var(--lc-teal) 50% 100%)">A/R</i><span class="to">→</span><i class="b sm lc-gray">I</i></td></tr>
+                <tr><td>Frischware einkaufen</td><td>Einkauf</td><td class="ch"><span class="gone">neu</span><span class="to">→</span><i class="b sm lc-indigo">A</i></td></tr>
+                <tr><td>Kasse abrechnen</td><td>Schichtleitung</td><td class="ch"><i class="b sm lc-teal">R</i><span class="to">→</span><i class="b sm multi" style="background:linear-gradient(135deg,var(--lc-indigo) 0% 50%,var(--lc-teal) 50% 100%)">A/R</i></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="muted" style="margin-top:10px;font-size:.88rem">Ausschnitt – im Beispiel der App ändern sich 18 Zellen in 6 von 12 Aufgaben.</p>
+        </div>
+        <div>
+          <h3>Vergleich „A je Rolle“</h3>
+          <p class="muted">Wie viele Entscheidungen hat jede Rolle vorher und nachher? Im Beispiel wandert die Last von der Inhaberin zur Schichtleitung und zu den Fachrollen.</p>
+          <div class="bars">
+            <div class="r"><span>Inhaberin</span><div class="track"><div class="bb ist" style="--n:6"></div><div class="bb" style="--n:1"></div><small>Ist 6 → Soll 1</small></div></div>
+            <div class="r"><span>Schichtleitung</span><div class="track"><div class="bb ist" style="--n:3"></div><div class="bb" style="--n:5"></div><small>Ist 3 → Soll 5</small></div></div>
+            <div class="r"><span>Technik</span><div class="track"><div class="bb ist" style="--n:1"></div><div class="bb" style="--n:2"></div><small>Ist 1 → Soll 2</small></div></div>
+            <div class="r"><span>Einkauf</span><div class="track"><div class="bb ist" style="--n:1"></div><div class="bb" style="--n:2"></div><small>Ist 1 → Soll 2</small></div></div>
+            <div class="r"><span>Marketing</span><div class="track"><div class="bb ist" style="--n:1"></div><div class="bb" style="--n:2"></div><small>Ist 1 → Soll 2</small></div></div>
+          </div>
+          <p class="muted" style="margin-top:12px;font-size:.85rem"><span style="opacity:.6">▬</span> Ist · ▬ Soll</p>
+          <p class="muted" style="margin-top:18px">Die Prüfung läuft für beide Stände. Ist die neue Verteilung eingeführt, macht <strong>„Soll als neuen Ist-Stand übernehmen“</strong> sie zum neuen Ist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRAXIS -->
+  <section id="praxis">
+    <div class="wrap">
+      <span class="eyebrow">09 · Praxistipps</span>
+      <h2>Typische Fehler – und wie du sie vermeidest</h2>
+      <div class="grid-2" style="margin-top:28px">
+        <div class="card dd do">
+          <h3>✓ So gelingt’s</h3>
+          <ul>
+            <li>Gemeinsam ausfüllen – die Diskussion je Zeile ist der eigentliche Nutzen.</li>
+            <li>Je Aufgabe zuerst das A klären, dann R, dann C und I.</li>
+            <li>Aufgaben als Tätigkeit formulieren und auf eine sinnvolle Größe bringen – lieber 15 klare Zeilen als 60 Kleinigkeiten.</li>
+            <li>Rollen statt Personen – Personen nur zuordnen.</li>
+            <li>Senkrecht gegenlesen: Wo ballen sich A und R?</li>
+            <li>Die Matrix teilen und bei Änderungen im Team aktualisieren.</li>
+          </ul>
+        </div>
+        <div class="card dd dont">
+          <h3>✕ Typische Fallen</h3>
+          <ul>
+            <li><b>Zwei A</b> – „Wir entscheiden das gemeinsam“ heißt im Streitfall: niemand.</li>
+            <li><b>C für alle</b> – aus Höflichkeit alle fragen macht jede Aufgabe zur Sitzung.</li>
+            <li><b>Personen als Spalten</b> – nach dem ersten Wechsel ist die Matrix veraltet.</li>
+            <li><b>Nur ein Name als Aufgabe</b> – „Kasse“ lässt offen, ob betreuen, abrechnen oder anschaffen.</li>
+            <li><b>Alles über eine Rolle</b> – die Schichtleitung an 7 von 8 Aufgaben ist ein Engpass.</li>
+            <li><b>Matrix als Aufgabenliste</b> – RACI klärt Zuständigkeit, keine Termine oder Erledigt-Status.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz">
+    <div class="wrap">
+      <span class="eyebrow">10 · Wissenscheck</span>
+      <h2>Sieben Fragen zum Abschluss</h2>
+      <p class="lead">Teste dein Verständnis. Die Erklärung erscheint nach deiner Antwort.</p>
+      <div class="quiz" id="quizBox"></div>
+      <p class="muted" id="quizScore" style="margin-top:16px"></p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="border-top:0;padding-top:24px">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2 style="margin-bottom:.3em">Jetzt die eigene Matrix anlegen</h2>
+          <p>Mit der RACI-App sammelst du Aufgaben und Rollen, setzt je Zelle die Buchstaben, prüfst waagerecht und senkrecht, vergleichst Ist und Soll und teilst das Ergebnis als Steckbrief oder Bericht – alles im Browser, ohne Konto. Die Food-Truck-Beispiele sind schon dabei.</p>
+        </div>
+        <a class="btn" href="https://method-commons.github.io/raci-app/" target="_blank" rel="noopener">App öffnen ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>RACI-Matrix · Kurzschulung · <a href="https://github.com/method-commons/raci-app" target="_blank" rel="noopener">App auf GitHub</a></span>
+    <span>Verantwortungsmatrix aus dem Projektmanagement · Varianten RASCI, RACI-VS, DACI · Beispiele fiktiv</span>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle
+  (function () {
+    const root = document.documentElement;
+    let saved = null;
+    try { saved = localStorage.getItem('raci-theme'); } catch (e) {}
+    if (saved) root.dataset.theme = saved;
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const dark = root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('raci-theme', root.dataset.theme); } catch (e) {}
+    });
+  })();
+
+  // Mobile menu
+  (function () {
+    const nav = document.querySelector('nav.top');
+    const btn = document.getElementById('menuToggle');
+    const set = open => { nav.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); btn.innerHTML = open ? '<span aria-hidden="true">✕</span> <span class="menu-label">Schließen</span>' : '<span aria-hidden="true">☰</span> <span class="menu-label">Menü</span>'; btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen'); };
+    btn.addEventListener('click', () => set(!nav.classList.contains('open')));
+    nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => set(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+  })();
+
+  // Matrix-Werkstatt – Buchstaben, Regeln und Schwellen wie in der App (js/variants.js, js/checks.js, js/ops.js)
+  const L = {
+    R: { key: 'R', kind: 'exec', count: 'min1', color: 'teal', name: 'Responsible', meaning: 'führt aus' },
+    A: { key: 'A', kind: 'owner', count: 'one', color: 'indigo', name: 'Accountable', meaning: 'entscheidet' },
+    C: { key: 'C', kind: 'consult', count: 'any', color: 'orange', name: 'Consulted', meaning: 'wird gefragt' },
+    I: { key: 'I', kind: 'inform', count: 'any', color: 'gray', name: 'Informed', meaning: 'wird informiert' }
+  };
+  const VARIANTS = {
+    raci: [L.R, L.A, L.C, L.I],
+    rasci: [L.R, L.A, { key: 'S', kind: 'support', count: 'any', color: 'cyan', name: 'Support', meaning: 'unterstützt' }, L.C, L.I],
+    'raci-vs': [L.R, L.A, L.C, L.I, { key: 'V', kind: 'verify', count: 'any', color: 'violet', name: 'Verify', meaning: 'prüft' }, { key: 'S', kind: 'signoff', count: 'max1', color: 'pink', name: 'Sign-off', meaning: 'zeichnet ab' }],
+    daci: [{ key: 'D', kind: 'driver', count: 'one', color: 'teal', name: 'Driver', meaning: 'treibt voran' }, { key: 'A', kind: 'owner', count: 'one', color: 'indigo', name: 'Approver', meaning: 'entscheidet' }, { ...L.C, name: 'Contributor', meaning: 'trägt bei' }, L.I]
+  };
+  const KIND_ORDER = ['owner', 'driver', 'exec', 'support', 'consult', 'verify', 'signoff', 'inform', 'other'];
+  const LEAD = ['owner', 'driver', 'exec'];
+  const MIN_TASKS = 3, MANY_OWNER_SHARE = 40, MANY_OWNER_MIN = 3, LIST_MAX = 3;
+  const MAX_TASKS = 10, MAX_ROLES = 7;
+  const VERB = /(^|[\s/(-])[a-zäöüß]{2,}(en|ern|eln)\b/u;
+
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const roleName = r => W.roles[r].trim() || '(Rolle ohne Namen)';
+  const taskName = t => W.tasks[t].trim() || '(ohne Namen)';
+
+  const W = { variant: 'raci', letters: VARIANTS.raci, rules: {}, tasks: [], roles: [], cells: [], sel: null, mark: null, hints: [], sugg: {} };
+
+  const letter = k => W.letters.find(l => l.key === k);
+  const kindOf = k => { const l = letter(k); return l ? l.kind : 'other'; };
+  function sortKeys(keys) {
+    const rank = k => { const l = letter(k); return l ? KIND_ORDER.indexOf(l.kind) * 100 + W.letters.indexOf(l) : 10000; };
+    return [...keys].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+  }
+  const keys = (t, r) => W.cells[t][r];
+  const label = ks => ks.join('/');
+
+  function badge(ks, size) {
+    if (!ks.length) return '';
+    const cls = 'b' + (size ? ' ' + size : '');
+    const ls = ks.map(letter);
+    if (ls.some(l => !l)) return '<i class="' + cls + ' unknown" title="' + esc(label(ks)) + ' – passt nicht zur Variante">' + esc(label(ks)) + '</i>';
+    if (ls.length === 1) return '<i class="' + cls + ' lc-' + ls[0].color + '" title="' + ls[0].key + ' – ' + ls[0].name + '">' + ls[0].key + '</i>';
+    const stops = ls.map((l, i) => 'var(--lc-' + l.color + ') ' + (i * 100 / ls.length) + '% ' + ((i + 1) * 100 / ls.length) + '%').join(', ');
+    return '<i class="' + cls + ' multi" style="background:linear-gradient(135deg, ' + stops + ')" title="' + ls.map(l => l.key + ' – ' + l.name).join(', ') + '">' + label(ks) + '</i>';
+  }
+
+  // wie Ops.press: vorhandenen entfernen, zu „A/R“ ergänzen oder ersetzen
+  function canCombine(ks) {
+    if (ks.length !== 2) return false;
+    return ks.map(kindOf).sort().join() === 'exec,owner';
+  }
+  function press(t, r, key) {
+    const cur = keys(t, r);
+    let next;
+    if (cur.includes(key)) next = cur.filter(k => k !== key);
+    else if (cur.length === 1 && canCombine([cur[0], key])) next = [cur[0], key];
+    else next = [key];
+    W.cells[t][r] = sortKeys([...new Set(next)]);
+  }
+
+  // wie Checks.taskIssues
+  function taskIssues(t) {
+    const all = W.roles.flatMap((_, r) => keys(t, r));
+    const out = [];
+    if (!all.length) out.push({ rule: 'empty', level: 'info' });
+    else {
+      for (const l of W.letters) {
+        const n = all.filter(k => k === l.key).length;
+        if (l.count === 'one' && n === 0) out.push({ rule: 'missing', level: 'bad', key: l.key, n });
+        else if ((l.count === 'one' || l.count === 'max1') && n > 1) out.push({ rule: 'tooMany', level: 'bad', key: l.key, n });
+        else if (l.count === 'min1' && n === 0 && W.rules.minExec) out.push({ rule: 'missing', level: 'warn', key: l.key, n });
+      }
+      const unknown = all.filter(k => !letter(k));
+      if (unknown.length) out.push({ rule: 'unknown', level: 'warn', key: unknown[0], n: unknown.length });
+      if (W.rules.manyConsult > 0) {
+        for (const l of W.letters.filter(x => x.kind === 'consult')) {
+          const n = all.filter(k => k === l.key).length;
+          if (n >= W.rules.manyConsult) out.push({ rule: 'manyConsult', level: 'warn', key: l.key, n });
+        }
+      }
+    }
+    if (W.rules.verb && W.tasks[t].trim() && !VERB.test(W.tasks[t])) out.push({ rule: 'verb', level: 'info' });
+    return out;
+  }
+  const isClear = issues => !issues.some(i => i.rule === 'empty' || i.rule === 'missing' || i.rule === 'tooMany' || i.rule === 'unknown');
+  const STATUS = { empty: () => 'leer', missing: i => 'kein ' + i.key, tooMany: i => i.n + '× ' + i.key, manyConsult: i => i.n + '× ' + i.key, unknown: i => '? ' + i.key, verb: () => 'Verb?' };
+  const issueText = i => STATUS[i.rule](i);
+  function status(t) {
+    const issues = taskIssues(t).filter(i => i.rule !== 'verb');
+    const top = issues.find(i => i.level === 'bad') || issues.find(i => i.level === 'warn') || issues[0];
+    if (!top) return { level: 'ok', text: '✓' };
+    if (top.rule === 'empty') return { level: 'empty', text: 'leer' };
+    return { level: top.level, text: issueText(top) };
+  }
+
+  // wie Checks.roleStats / roleIssues
+  function roleStats(r) {
+    const counts = {};
+    let involved = 0, lead = 0, owner = 0;
+    W.tasks.forEach((_, t) => {
+      const k = keys(t, r);
+      if (!k.length) return;
+      involved++;
+      for (const x of k) counts[x] = (counts[x] || 0) + 1;
+      const kinds = k.map(kindOf);
+      if (kinds.some(x => LEAD.includes(x))) lead++;
+      if (kinds.includes('owner')) owner++;
+    });
+    return { counts, involved, lead, owner };
+  }
+  function roleIssues(r) {
+    const n = W.tasks.length;
+    if (!n) return [];
+    const s = roleStats(r);
+    const out = [];
+    if (W.rules.emptyRole && s.involved === 0) out.push({ rule: 'emptyRole' });
+    if (W.rules.bottleneck > 0 && n >= MIN_TASKS && s.involved * 100 / n > W.rules.bottleneck) out.push({ rule: 'bottleneck', n: s.lead });
+    if (W.rules.bottleneck > 0 && s.owner >= MANY_OWNER_MIN && s.owner * 100 / n > MANY_OWNER_SHARE) out.push({ rule: 'manyOwner', n: s.owner });
+    return out;
+  }
+  const leadLabel = () => W.letters.filter(l => LEAD.includes(l.kind)).sort((a, b) => KIND_ORDER.indexOf(a.kind) - KIND_ORDER.indexOf(b.kind)).map(l => l.key).join(' oder ');
+
+  function taskList(list) {
+    const parts = list.slice(0, LIST_MAX).map(({ t, i }) => (t + 1) + ' ' + taskName(t) + (i.rule === 'verb' ? '' : ': ' + issueText(i)));
+    if (list.length > LIST_MAX) parts.push('+' + (list.length - LIST_MAX) + ' weitere');
+    return parts.join(' · ');
+  }
+
+  // wie Checks.hints
+  function hints() {
+    if (!W.tasks.length || !W.roles.length) return [{ state: 'open', title: 'Noch nicht vollständig', detail: 'Aufgaben und Rollen anlegen, dann Zeile für Zeile klären, wer entscheidet und wer ausführt.' }];
+    const all = W.tasks.map((_, t) => ({ t, issues: taskIssues(t) }));
+    const hits = pred => all.flatMap(({ t, issues }) => issues.filter(pred).slice(0, 1).map(i => ({ t, i })));
+    const out = [];
+    const add = (title, list, level, okText) => out.push({ state: list.length ? level : 'ok', title, detail: list.length ? taskList(list) : okText, tasks: list.map(x => x.t) });
+
+    const empty = hits(i => i.rule === 'empty');
+    if (empty.length) out.push({ state: 'open', title: 'Aufgaben ohne Buchstaben', detail: taskList(empty), tasks: empty.map(x => x.t) });
+    const byRule = [...W.letters].sort((a, b) => Number(a.count === 'min1') - Number(b.count === 'min1') || KIND_ORDER.indexOf(a.kind) - KIND_ORDER.indexOf(b.kind));
+    for (const l of byRule) {
+      if (l.count === 'one' || l.count === 'max1') add((l.count === 'one' ? 'Genau ein ' : 'Höchstens ein ') + l.key + ' je Aufgabe', hits(i => (i.rule === 'missing' || i.rule === 'tooMany') && i.key === l.key), 'bad', 'bei allen Aufgaben erfüllt');
+      else if (l.count === 'min1' && W.rules.minExec) add('Mindestens ein ' + l.key + ' je Aufgabe', hits(i => i.rule === 'missing' && i.key === l.key), 'warn', 'bei allen Aufgaben erfüllt');
+    }
+    const unknown = hits(i => i.rule === 'unknown');
+    if (unknown.length) add('Buchstaben passen zur Variante', unknown, 'warn', '');
+    const consult = W.letters.find(l => l.kind === 'consult');
+    if (W.rules.manyConsult > 0 && consult) add(consult.key + ' sparsam', hits(i => i.rule === 'manyConsult'), 'warn', 'keine Aufgabe mit ' + W.rules.manyConsult + ' oder mehr ' + consult.key);
+
+    const roleHits = W.roles.map((_, r) => ({ r, issues: roleIssues(r), s: roleStats(r) }));
+    const addRole = (rule, title, okText, text) => {
+      const list = roleHits.filter(x => x.issues.some(i => i.rule === rule));
+      out.push({ state: list.length ? 'warn' : 'ok', title, detail: list.length ? list.map(text).join(' · ') : okText, roles: list.map(x => x.r) });
+    };
+    const n = W.tasks.length;
+    if (W.rules.bottleneck > 0) addRole('bottleneck', 'Keine Engpässe', 'keine Rolle an fast allen Aufgaben beteiligt', ({ r, s }) => roleName(r) + ' an ' + s.involved + ' von ' + n + ' Aufgaben beteiligt, ' + s.lead + '× ' + leadLabel());
+    const owner = W.letters.find(l => l.kind === 'owner');
+    if (owner && W.rules.bottleneck > 0) addRole('manyOwner', 'Entscheidungen (' + owner.key + ') verteilt', 'keine Rolle mit auffällig vielen Entscheidungen', ({ r, s }) => roleName(r) + ': ' + s.owner + '× ' + owner.key);
+    if (W.rules.emptyRole) addRole('emptyRole', 'Jede Rolle hat eine Aufgabe', 'alle Rollen kommen vor', ({ r }) => roleName(r));
+    if (W.rules.verb) {
+      const verb = hits(i => i.rule === 'verb');
+      out.push({ state: verb.length ? 'warn' : 'ok', title: 'Aufgaben als Tätigkeit', detail: verb.length ? taskList(verb) + ' – mit Verb formulieren, z. B. „Kasse abrechnen“' : 'alle ' + n + ' mit Verb formuliert', tasks: verb.map(x => x.t) });
+    }
+    return out;
+  }
+
+  // wie Checks.suggestions: R abgeben (die entscheidende Rolle wird A/R), C → I, I streichen
+  function suggestions(role) {
+    const byKind = kind => W.letters.find(l => l.kind === kind);
+    const consult = byKind('consult'), inform = byKind('inform');
+    const exec = [], cons = [], inf = [];
+    W.tasks.forEach((_, t) => {
+      const k = keys(t, role);
+      if (k.length !== 1) return;
+      const kind = kindOf(k[0]);
+      if (kind === 'exec' && consult) {
+        const other = W.roles.findIndex((_, r) => r !== role && keys(t, r).length === 1 && kindOf(keys(t, r)[0]) === 'owner');
+        if (other >= 0) exec.push({ t, kind, from: k, to: [consult.key], other, otherTo: sortKeys([...keys(t, other), k[0]]) });
+      } else if (kind === 'consult' && inform) cons.push({ t, kind, from: k, to: [inform.key] });
+      else if (kind === 'inform') inf.push({ t, kind, from: k, to: [] });
+    });
+    return [...exec, ...cons, ...inf].slice(0, 5);
+  }
+  function suggestionText(s) {
+    if (s.kind === 'exec') return label(s.from) + ' → ' + label(s.to) + ', ' + roleName(s.other) + ' wird ' + label(s.otherTo);
+    if (s.kind === 'consult') return label(s.from) + ' → ' + label(s.to) + ', das Ergebnis reicht';
+    return label(s.from) + ' streichen – nur bei Bedarf informieren';
+  }
+
+  // Zeichnen
+  function renderTable() {
+    const head = '<thead><tr><th class="task"><span class="lbl">Aufgabe</span></th>'
+      + W.roles.map((name, r) => '<th class="role" data-col="' + r + '"><input type="text" data-role="' + r + '" value="' + esc(name) + '" aria-label="Rolle ' + (r + 1) + '" placeholder="Rolle"></th>').join('')
+      + '<th class="chk"><span class="lbl">Prüfung</span></th></tr></thead>';
+    const body = '<tbody>' + W.tasks.map((name, t) => '<tr data-row="' + t + '"><td class="task"><div class="t"><span class="no">' + (t + 1) + '</span><input type="text" data-task="' + t + '" value="' + esc(name) + '" aria-label="Aufgabe ' + (t + 1) + '" placeholder="z. B. „Ware bestellen“"></div></td>'
+      + W.roles.map((_, r) => '<td data-col="' + r + '"><button type="button" class="cell" data-t="' + t + '" data-r="' + r + '"></button></td>').join('')
+      + '<td class="chk"></td></tr>').join('') + '</tbody>';
+    const foot = '<tfoot><tr><td class="task"><span class="tfoot-label">Summe</span></td>' + W.roles.map((_, r) => '<td data-col="' + r + '" class="sumcell"></td>').join('') + '<td class="chk"></td></tr></tfoot>';
+    $('mx').innerHTML = head + body + foot;
+    $('addTask').disabled = W.tasks.length >= MAX_TASKS;
+    $('removeTask').disabled = W.tasks.length <= 1;
+    $('addRole').disabled = W.roles.length >= MAX_ROLES;
+    $('removeRole').disabled = W.roles.length <= 1;
+    $('legend').innerHTML = W.letters.map(l => '<span>' + badge([l.key], 'sm') + l.meaning + '</span>').join('');
+    W.tasks.forEach((_, t) => W.roles.forEach((_, r) => renderCell(t, r)));
+  }
+
+  function cellButton(t, r) { return $('mx').querySelector('button.cell[data-t="' + t + '"][data-r="' + r + '"]'); }
+  function renderCell(t, r) {
+    const b = cellButton(t, r);
+    if (!b) return;
+    const k = keys(t, r);
+    b.innerHTML = badge(k);
+    b.classList.toggle('sel', !!W.sel && W.sel.t === t && W.sel.r === r);
+    b.setAttribute('aria-label', taskName(t) + ' · ' + roleName(r) + ': ' + (k.length ? label(k) : 'leer'));
+  }
+
+  function renderPicker() {
+    const p = $('picker');
+    if (!W.sel) { p.innerHTML = '<span class="where"><b>Zelle wählen</b><small>Klick in die Matrix – dann Buchstaben setzen.</small></span>'; return; }
+    const { t, r } = W.sel;
+    const cur = keys(t, r);
+    // wie in der App: zweites A (Regel „genau/höchstens einer“) mit Rückfrage
+    const single = cur.map(letter).find(l => l && (l.count === 'one' || l.count === 'max1'));
+    const other = single ? W.roles.findIndex((_, o) => o !== r && keys(t, o).includes(single.key)) : -1;
+    p.innerHTML = '<span class="where"><b>' + esc(taskName(t)) + '</b><small>Rolle ' + esc(roleName(r)) + '</small></span>'
+      + '<span class="keys">' + W.letters.map(l => '<button type="button" class="pk" data-key="' + l.key + '" aria-pressed="' + cur.includes(l.key) + '" title="' + l.key + ' – ' + l.name + ' (' + l.meaning + ')">' + badge([l.key]) + '</button>').join('') + '</span>'
+      + '<button type="button" class="clr" data-key="">leeren</button>'
+      + (other >= 0 ? '<span class="conflict">Diese Aufgabe hat schon ein ' + single.key + ' bei ' + esc(roleName(other)) + '. Wer entscheidet am Ende?</span>' : '');
+  }
+
+  function refresh() {
+    const rows = $('mx').querySelectorAll('tbody tr');
+    const markT = W.mark && W.mark.tasks ? W.mark.tasks : [];
+    const markR = W.mark && W.mark.roles ? W.mark.roles : [];
+    let clear = 0;
+    rows.forEach((tr, t) => {
+      const st = status(t);
+      if (isClear(taskIssues(t))) clear++;
+      tr.querySelector('td.chk').innerHTML = '<span class="st ' + st.level + '">' + esc(st.text) + '</span>';
+      tr.classList.toggle('hl', markT.includes(t));
+    });
+    $('mx').querySelectorAll('[data-col]').forEach(el => el.classList.toggle('hl', markR.includes(+el.dataset.col)));
+    $('mx').querySelectorAll('td.sumcell').forEach((td, r) => {
+      const s = roleStats(r);
+      const known = W.letters.filter(l => s.counts[l.key]).map(l => '<span>' + badge([l.key], 'sm') + s.counts[l.key] + '</span>');
+      const other = Object.keys(s.counts).filter(k => !letter(k)).map(k => '<span>' + badge([k], 'sm') + s.counts[k] + '</span>');
+      const issues = roleIssues(r);
+      const ISSUE = { bottleneck: () => 'Engpass', manyOwner: i => i.n + '× ' + (W.letters.find(l => l.kind === 'owner') || {}).key, emptyRole: () => 'ohne Aufgabe' };
+      td.innerHTML = '<div class="sum">' + (known.concat(other).join('') || '–') + '</div>' + issues.map(i => '<span class="st warn">' + ISSUE[i.rule](i) + '</span>').join(' ');
+    });
+
+    const hs = hints();
+    const SYM = { ok: '✓', warn: '!', bad: '✗', open: '–' };
+    $('hints').innerHTML = hs.map((h, i) => {
+      const can = (h.tasks && h.tasks.length) || (h.roles && h.roles.length);
+      const on = can && W.mark && W.mark.i === i;
+      return '<li class="' + h.state + (can ? ' click' : '') + (on ? ' on' : '') + '" data-h="' + i + '"' + (can ? ' role="button" tabindex="0" aria-pressed="' + !!on + '"' : '') + '><span class="sym">' + SYM[h.state] + '</span><span><b>' + esc(h.title) + '</b>' + (h.detail ? '<small>' + esc(h.detail) + '</small>' : '') + '</span></li>';
+    }).join('');
+    W.hints = hs;
+    $('clearScore').textContent = W.tasks.length ? clear + ' / ' + W.tasks.length + ' eindeutig' : '';
+
+    const states = hs.map(h => h.state);
+    const v = $('verdict');
+    const empty = !W.cells.some(row => row.some(c => c.length));
+    if (empty) { v.className = 'status info'; v.innerHTML = '<b>Noch leer.</b> Zellen anklicken und Buchstaben setzen – oder ein Beispiel laden.'; }
+    else if (states.includes('bad')) { v.className = 'status bad'; v.innerHTML = '<b>Noch nicht eindeutig:</b> ' + (W.tasks.length - clear) + ' Aufgabe(n) verletzen eine Regel der Buchstaben. Zuerst je Zeile das ' + ((W.letters.find(l => l.kind === 'owner') || {}).key || 'A') + ' klären.'; }
+    else if (states.includes('warn') || states.includes('open')) { v.className = 'status warn'; v.innerHTML = '<b>Fast fertig:</b> ' + states.filter(x => x === 'warn').length + ' Hinweis(e) zu prüfen – du entscheidest.'; }
+    else { v.className = 'status ok'; v.innerHTML = '<b>Alle Regeln erfüllt.</b> Jetzt die Matrix teilen – als Steckbrief je Rolle.'; }
+
+    // Entlasten: Rollen mit Engpass
+    const busy = W.roles.map((_, r) => r).filter(r => roleIssues(r).some(i => i.rule === 'bottleneck'));
+    if (!W.rules.bottleneck) $('sugg').innerHTML = '<p class="muted" style="margin:0;font-size:.88rem">Bei DACI geht es um eine Entscheidung – die Prüfung auf Engpässe ist aus.</p>';
+    else if (!busy.length) $('sugg').innerHTML = '<p class="muted" style="margin:0;font-size:.88rem">Keine Rolle ist ein Engpass. Vorschläge erscheinen, sobald eine Rolle an mehr als ' + W.rules.bottleneck + ' % der Aufgaben beteiligt ist.</p>';
+    else {
+      $('sugg').innerHTML = busy.map(r => {
+        const s = roleStats(r);
+        const list = suggestions(r);
+        W.sugg[r] = list;
+        return '<p style="font-size:.88rem;margin:0 0 8px"><b>' + esc(roleName(r)) + '</b> <span class="muted">– an ' + s.involved + ' von ' + W.tasks.length + ' Aufgaben beteiligt, davon ' + s.lead + '× ' + leadLabel() + '.</span></p>'
+          + (list.length ? '<ul class="sugg">' + list.map((x, j) => '<li><span>' + esc(suggestionText(x)) + '<small>' + (x.t + 1) + ' ' + esc(taskName(x.t)) + '</small></span><button type="button" data-sr="' + r + '" data-sj="' + j + '">Übernehmen</button></li>').join('') + '</ul>' : '<p class="muted" style="font-size:.85rem;margin:0">Keine Vorschläge für diese Rolle.</p>');
+      }).join('<hr style="border:0;border-top:1px dashed var(--line);margin:14px 0">');
+    }
+  }
+
+  function select(t, r, focus) {
+    const prev = W.sel;
+    W.sel = { t, r };
+    if (prev) renderCell(prev.t, prev.r);
+    renderCell(t, r);
+    renderPicker();
+    if (focus) cellButton(t, r).focus();
+  }
+  function changed(t, r) { renderCell(t, r); renderPicker(); refresh(); }
+  function rebuild() { W.mark = null; renderTable(); renderPicker(); refresh(); }
+
+  $('mx').addEventListener('click', e => {
+    const b = e.target.closest('button.cell');
+    if (b) select(+b.dataset.t, +b.dataset.r, false);
+  });
+  $('mx').addEventListener('keydown', e => {
+    const b = e.target.closest('button.cell');
+    if (!b) return;
+    const t = +b.dataset.t, r = +b.dataset.r;
+    const moves = { ArrowUp: [-1, 0], ArrowDown: [1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1] };
+    if (moves[e.key]) {
+      const nt = t + moves[e.key][0], nr = r + moves[e.key][1];
+      if (nt >= 0 && nt < W.tasks.length && nr >= 0 && nr < W.roles.length) select(nt, nr, true);
+      e.preventDefault();
+      return;
+    }
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'Delete' || e.key === 'Backspace') { W.cells[t][r] = []; select(t, r); changed(t, r); e.preventDefault(); return; }
+    if (e.key === 'Escape') { W.sel = null; renderCell(t, r); renderPicker(); return; }
+    const k = e.key.length === 1 ? e.key.toUpperCase() : '';
+    if (k && letter(k)) { select(t, r); press(t, r, k); changed(t, r); e.preventDefault(); }
+  });
+  $('mx').addEventListener('input', e => {
+    const el = e.target;
+    if (el.dataset.task != null) W.tasks[+el.dataset.task] = el.value;
+    else if (el.dataset.role != null) W.roles[+el.dataset.role] = el.value;
+    else return;
+    if (W.sel) renderPicker();
+    refresh();
+  });
+  $('mx').addEventListener('keydown', e => {
+    // Enter im Aufgabennamen legt die nächste Aufgabe an – wie in der App
+    const el = e.target;
+    if (e.key !== 'Enter' || el.dataset.task == null) return;
+    e.preventDefault();
+    const t = +el.dataset.task;
+    if (t === W.tasks.length - 1 && W.tasks.length < MAX_TASKS) addTask();
+    const next = $('mx').querySelector('input[data-task="' + (t + 1) + '"]');
+    if (next) next.focus();
+  });
+  $('picker').addEventListener('click', e => {
+    const b = e.target.closest('button[data-key]');
+    if (!b || !W.sel) return;
+    const { t, r } = W.sel;
+    if (b.dataset.key) press(t, r, b.dataset.key); else W.cells[t][r] = [];
+    changed(t, r);
+  });
+  const toggleMark = i => {
+    const h = W.hints[i];
+    if (!h || !((h.tasks && h.tasks.length) || (h.roles && h.roles.length))) return;
+    W.mark = W.mark && W.mark.i === i ? null : { i, tasks: h.tasks, roles: h.roles };
+    refresh();
+  };
+  $('hints').addEventListener('click', e => { const li = e.target.closest('li[data-h]'); if (li) toggleMark(+li.dataset.h); });
+  $('hints').addEventListener('keydown', e => { const li = e.target.closest('li[data-h]'); if (li && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleMark(+li.dataset.h); } });
+  $('sugg').addEventListener('click', e => {
+    const b = e.target.closest('button[data-sr]');
+    if (!b) return;
+    const s = W.sugg[b.dataset.sr][+b.dataset.sj];
+    W.cells[s.t][+b.dataset.sr] = s.to;
+    if (s.otherTo) W.cells[s.t][s.other] = s.otherTo;
+    W.roles.forEach((_, r) => renderCell(s.t, r));
+    renderPicker();
+    refresh();
+  });
+
+  function setVariant(v) {
+    W.variant = v;
+    W.letters = VARIANTS[v];
+    // wie Model.create: bei DACI keine Engpass-Prüfung
+    W.rules = { minExec: true, manyConsult: 5, bottleneck: v === 'daci' ? 0 : 80, emptyRole: true, verb: true };
+    W.cells = W.cells.map(row => row.map(sortKeys));
+    $('variant').value = v;
+  }
+  $('variant').addEventListener('change', e => { setVariant(e.target.value); rebuild(); });
+
+  function addTask() {
+    if (W.tasks.length >= MAX_TASKS) return;
+    W.tasks.push('');
+    W.cells.push(W.roles.map(() => []));
+    rebuild();
+  }
+  $('addTask').addEventListener('click', () => { addTask(); $('mx').querySelector('input[data-task="' + (W.tasks.length - 1) + '"]').focus(); });
+  $('removeTask').addEventListener('click', () => {
+    if (W.tasks.length <= 1) return;
+    W.tasks.pop(); W.cells.pop();
+    if (W.sel && W.sel.t >= W.tasks.length) W.sel = null;
+    rebuild();
+  });
+  $('addRole').addEventListener('click', () => {
+    if (W.roles.length >= MAX_ROLES) return;
+    W.roles.push('');
+    W.cells.forEach(row => row.push([]));
+    rebuild();
+    $('mx').querySelector('input[data-role="' + (W.roles.length - 1) + '"]').focus();
+  });
+  $('removeRole').addEventListener('click', () => {
+    if (W.roles.length <= 1) return;
+    W.roles.pop(); W.cells.forEach(row => row.pop());
+    if (W.sel && W.sel.r >= W.roles.length) W.sel = null;
+    rebuild();
+  });
+
+  const ROLES = ['Inhaberin', 'Schichtleitung', 'Technik', 'Einkauf', 'Marketing', 'Service-Team', 'Veranstalter'];
+  // Zellen als Text je Aufgabe, eine Spalte je Rolle (leer = nicht beteiligt)
+  const WEAK = [
+    ['Standplatz beantragen', 'A/R', 'I', '', 'C', '', '', 'C'],
+    ['Ware bestellen', 'A', 'C', '', 'A/R', '', ''],
+    ['Schichtplan erstellen', 'C', 'A/R', '', '', '', 'I'],
+    ['Ankündigung posten', 'C', '', '', '', 'R', '', 'I'],
+    ['Gasanschluss prüfen', '', 'I', 'A/R', '', '', '', 'C'],
+    ['Kasse & Karten', '', 'A', 'C', 'C', '', 'R'],
+    ['Fritteuse überwachen', '', 'R', 'A', '', '', 'R'],
+    ['Mit Veranstalter abrechnen', 'A', 'C', 'C', 'R', 'C', 'C', 'C']
+  ];
+  const GOOD = [
+    ['Standplatz beantragen', 'A/R', '', '', 'C', '', '', 'C'],
+    ['Ware bestellen', 'C', 'C', '', 'A/R', '', ''],
+    ['Schichtplan erstellen', 'C', 'A/R', '', '', '', 'I'],
+    ['Ankündigung posten', 'C', '', '', '', 'A/R', '', 'I'],
+    ['Gasanschluss prüfen', '', 'I', 'A/R', '', '', '', 'C'],
+    ['Kasse betreuen', '', 'A', 'C', 'I', '', 'R'],
+    ['Fritteuse überwachen', '', 'R', 'A', '', '', 'R'],
+    ['Mit Veranstalter abrechnen', 'A', 'C', '', 'R', 'I', 'I', 'C']
+  ];
+  function load(rows, roles) {
+    W.roles = roles.slice();
+    W.tasks = rows.map(x => x[0]);
+    W.cells = rows.map(x => roles.map((_, r) => (x[r + 1] || '').split('/').filter(Boolean)));
+    W.sel = null;
+    setVariant('raci');
+    rebuild();
+  }
+  $('weakBtn').addEventListener('click', () => load(WEAK, ROLES));
+  $('goodBtn').addEventListener('click', () => load(GOOD, ROLES));
+  $('clearBtn').addEventListener('click', () => load([['', '', '', ''], ['', '', '', ''], ['', '', '', '']], ['', '', '']));
+  load(WEAK, ROLES);
+
+  // Quiz
+  const quiz = [
+    { q: 'Wie viele A darf eine Aufgabe in einer RACI-Matrix haben?',
+      a: ['Beliebig viele – je mehr, desto sicherer.', 'Genau eines.', 'Höchstens eines, auch keines ist in Ordnung.'], ok: 1,
+      why: 'Genau ein A je Aufgabe: Mit keinem A gibt niemand frei, mit zwei A entscheidet im Streitfall niemand. Die App wertet beides als Fehler.' },
+    { q: 'Bei „Ware bestellen“ stehen Inhaberin A und Einkauf A/R. Was tust du?',
+      a: ['Klären, wer am Ende entscheidet – die andere Rolle wird C oder I.', 'So lassen – beide sind wichtig.', 'Beide auf R setzen.'], ok: 0,
+      why: 'Die Frage lautet: Wer hält den Kopf hin? Entscheidet der Einkauf, wird die Inhaberin vorher gefragt (C) – oder nur informiert (I).' },
+    { q: 'Was unterscheidet C von I?',
+      a: ['C ist wichtiger als I.', 'C wird vorher gefragt (zwei Richtungen), I danach informiert (eine Richtung).', 'Kein Unterschied – beides heißt „Bescheid geben“.'], ok: 1,
+      why: 'Consulted bringt sich ein, bevor entschieden wird, und kann das Ergebnis ändern. Informed erfährt das Ergebnis – Einbahnstraße, keine Abstimmung.' },
+    { q: 'Was gehört in die Spalten der Matrix?',
+      a: ['Rollen wie „Schichtleitung“ oder „Technik“.', 'Die Namen der Mitarbeitenden.', 'Die Phasen des Projekts.'], ok: 0,
+      why: 'Spalten sind Rollen, nicht Personen – so bleibt die Matrix bei Urlaub und Personalwechsel gültig. Personen lassen sich den Rollen zuordnen.' },
+    { q: 'Die Schichtleitung ist an 7 von 8 Aufgaben beteiligt. Was meldet die senkrechte Prüfung?',
+      a: ['Nichts – viel Beteiligung ist gut.', 'Einen Fehler – die Matrix ist ungültig.', 'Einen Engpass – entlasten: R abgeben, C durch I ersetzen oder I streichen.'], ok: 2,
+      why: 'Über 80 % Beteiligung heißt: Alles läuft über eine Rolle. Das ist kein Regelverstoß, aber ein Hinweis zum Prüfen – die App schlägt Entlastungen vor.' },
+    { q: 'Es geht um eine einzelne Entscheidung: „Kartenzahlung einführen – welcher Anbieter?“ Welche Variante passt am besten?',
+      a: ['RASCI', 'DACI', 'RACI-VS'], ok: 1,
+      why: 'DACI ist für Entscheidungen statt Abläufe gemacht: Driver treibt voran, Approver entscheidet, Contributors bringen Wissen ein, Informed erfahren das Ergebnis.' },
+    { q: 'Eine Zeile heißt nur „Kasse“. Was ist das Problem?',
+      a: ['Keins – kurz ist gut.', 'Unklar, welche Tätigkeit gemeint ist – besser „Kasse abrechnen“ oder „Kasse betreuen“.', 'Kassen gehören nicht in eine RACI-Matrix.'], ok: 1,
+      why: 'Aufgaben als Tätigkeit mit Verb formulieren. Sonst meint jede Rolle etwas anderes – und die Buchstaben gelten für verschiedene Dinge.' }
+  ];
+  const quizBox = document.getElementById('quizBox');
+  let score = 0, answered = 0;
+  quiz.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'qz';
+    d.innerHTML = '<p>' + (i + 1) + '. ' + item.q + '</p><div class="opts"></div><div class="why">' + item.why + '</div>';
+    const opts = d.querySelector('.opts');
+    item.a.forEach((txt, j) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = txt;
+      b.addEventListener('click', () => {
+        opts.querySelectorAll('button').forEach((x, k) => {
+          x.disabled = true;
+          if (k === item.ok) x.classList.add('right');
+        });
+        if (j !== item.ok) b.classList.add('wrong'); else score++;
+        answered++;
+        d.classList.add('done');
+        if (answered === quiz.length) {
+          document.getElementById('quizScore').textContent =
+            score + ' von ' + quiz.length + ' richtig. ' + (score === quiz.length ? 'Stark – du bist bereit für deine erste eigene Matrix!' : 'Schau dir die Abschnitte oben gern noch einmal an.');
+        }
+      });
+      opts.appendChild(b);
+    });
+    quizBox.appendChild(d);
+  });
+</script>
+</body>
+</html>
