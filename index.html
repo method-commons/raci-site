@@ -383,6 +383,10 @@
   .bars .bb { height: 12px; border-radius: 4px; background: var(--lc-indigo); width: calc(var(--n) * 8%); min-width: 4px; }
   .bars .bb.ist { opacity: .35; }
   .bars small { color: var(--muted); font-size: .78rem; }
+  .bars-legend { display: flex; gap: 16px; margin: 12px 0 0; font-size: .85rem; color: var(--muted); }
+  .bars-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .bars-legend .bb { display: inline-block; width: 22px; height: 10px; border-radius: 3px; background: var(--lc-indigo); }
+  .bars-legend .bb.ist { opacity: .35; }
 
   /* Do / Don't */
   .dd h3 { display: flex; align-items: center; gap: 8px; }
@@ -884,7 +888,7 @@
             <div class="r"><span>Einkauf</span><div class="track"><div class="bb ist" style="--n:1"></div><div class="bb" style="--n:2"></div><small>Ist 1 → Soll 2</small></div></div>
             <div class="r"><span>Marketing</span><div class="track"><div class="bb ist" style="--n:1"></div><div class="bb" style="--n:2"></div><small>Ist 1 → Soll 2</small></div></div>
           </div>
-          <p class="muted" style="margin-top:12px;font-size:.85rem"><span style="opacity:.6">▬</span> Ist · ▬ Soll</p>
+          <p class="bars-legend"><span><i class="bb ist"></i>Ist</span><span><i class="bb"></i>Soll</span></p>
           <p class="muted" style="margin-top:18px">Die Prüfung läuft für beide Stände. Ist die neue Verteilung eingeführt, macht <strong>„Soll als neuen Ist-Stand übernehmen“</strong> sie zum neuen Ist.</p>
         </div>
       </div>
